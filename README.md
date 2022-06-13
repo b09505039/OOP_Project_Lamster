@@ -7,6 +7,12 @@
 1. Eclipse IDE Version: 2021-12 (4.22.0)
 2. jdk Version: 17.0.3.1
 
+環境部署流程：
+1. 進入OOP_Project_Lamster這個Repository後，點擊綠色的Code，並Download ZIP。
+2. 下載完OOP_Project_Lamster-main.zip之後，解壓縮成OOP_Project_Lamster-main的資料夾。
+3. 開啟Eclipse，選擇存放的位置\OOP_Project_Lamster-main\OOP_Project_Lamster-main\Entity，並Launch。
+4. 點選Run即可執行程式，並開始遊戲。
+5. 也可以直接選擇執行Lamster.jar，即可開始遊戲。
 
 本遊戲功能包括：
 1. 遊戲起始UI介面、設定畫面長寬選單
