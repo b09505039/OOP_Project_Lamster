@@ -1,0 +1,57 @@
+package graphics;
+
+public class Render {
+	public final int width;
+	public final int height;
+	public final int[] pixels;
+	private String chars;
+
+	public Render(int width, int height) {
+		this.width = width;
+		this.height = height;
+		pixels = new int[height * width];
+	
+		
+	}
+
+	public void draw(Render render, int xOffset, int yOffset) {
+		for (int y = 0; y < render.height; y++) {
+			int yPix = y + yOffset;
+			if (yPix < 0 || yPix >= height) {
+				continue;
+			}
+
+			for (int x = 0; x < render.width; x++) {
+				int xPix = x + xOffset;
+				if (xPix < 0 || xPix >= width) {
+					continue;
+				}
+				
+				int alpha = render.pixels[x + y * render.width];
+
+				if (alpha > 0) {
+					pixels[xPix + yPix * width] = alpha;
+				}
+			}
+		}
+	}
+	
+	
+	
+	public void draw(Render bitmap, int xOffs, int yOffs, int xo, int yo, int w, int h, int col) {
+		for (int y = 0; y < h; y++) {
+			int yPix = y + yOffs;
+			if (yPix < 0 || yPix >= height) continue;
+
+			for (int x = 0; x < w; x++) {
+				int xPix = x + xOffs;
+				if (xPix < 0 || xPix >= width) continue;
+
+				int src = bitmap.pixels[(x + xo) + (y + yo) * bitmap.width];
+				if (src >= 0) {
+					pixels[xPix + yPix * width] = src * col;
+				}
+			}
+		}
+	}
+}

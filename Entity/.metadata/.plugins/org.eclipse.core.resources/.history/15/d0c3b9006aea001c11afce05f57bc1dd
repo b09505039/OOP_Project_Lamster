@@ -1,0 +1,7 @@
+package level;
+
+public class NonSolidWall extends Block {
+	public NonSolidWall() {		//determine the wall is solid or not, it can help detect collision
+		//solid = false;
+	}
+}

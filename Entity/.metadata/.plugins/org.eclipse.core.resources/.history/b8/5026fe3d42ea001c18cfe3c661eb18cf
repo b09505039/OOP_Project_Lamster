@@ -1,0 +1,137 @@
+package gui;
+
+
+import java.awt.Canvas;
+import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferStrategy;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
+import input.InputHandler;
+import main.Configuration;
+import main.Display;
+import main.RunGame;
+
+
+public class Gameover extends Canvas implements Runnable {
+	private static final long serialVersionUID = 1L;
+	private int width = 800;
+	private int height = 400;
+	private JButton Ok;
+	private Rectangle rOk;
+	int w = 0;
+	int h = 0;
+	private int button_width = 80;
+	private int button_height = 30;
+	
+	boolean running = false;
+	Thread thread;
+	JFrame frame = new JFrame();
+	
+	JPanel window = new JPanel();
+	
+	public Gameover() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		frame.setTitle("End");
+		frame.setSize(new Dimension(width, height));
+		frame.add(window);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		frame.setResizable(false);
+		window.setLayout(null);
+		drawButtons();
+		frame.repaint();
+		startMenu();
+	}
+	public void startMenu() {
+		running = true;
+		thread = new Thread(this, "logo");
+		thread.start();
+	}
+	
+	public void stopMenu() {
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(running) {
+			try {
+			rendermenu();
+			} catch (IllegalStateException e) {
+				System.out.println("error");
+			}
+		}
+	}
+	
+	private void rendermenu() throws IllegalStateException {
+		
+		BufferStrategy bs = this.getBufferStrategy(); // graphic things, 只想執行一次
+		System.out.println("error3");
+		if (bs == null) {
+			createBufferStrategy(3); // 3 dimensional
+			
+		}
+		System.out.println("error4");
+		Graphics g = bs.getDrawGraphics();
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, 800, 400);
+		
+		String FileName = "/menu.jpg";
+		InputStream iss = Display.class.getResourceAsStream(FileName);
+		try {
+			g.drawImage(ImageIO.read(iss), 0, 0, 800, 400, null);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error2");
+		}
+		
+		g.dispose();
+		bs.show();
+	}
+	
+	
+	public void drawButtons() {
+		
+		Ok = new JButton("OK");
+		rOk = new Rectangle((width - 100), (height - 70), button_width, button_height );
+		Ok.setBounds(rOk);
+		window.add(Ok);
+		
+		Ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				System.exit(0);
+			
+			}
+		});
+	}
+
+
+}

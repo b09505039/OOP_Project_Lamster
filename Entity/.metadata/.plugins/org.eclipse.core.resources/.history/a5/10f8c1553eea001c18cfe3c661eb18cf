@@ -1,0 +1,135 @@
+package gui;
+
+
+import java.awt.Choice;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import main.Configuration;
+
+
+public class Gameover extends JFrame  {
+	private static final long serialVersionUID = 1L;
+	private JTextField twidth, theight;
+	private JLabel lwidth, lheight, actwidth, actheight;
+	private int width = 540;
+	private int height = 440;
+	private JButton Ok;
+	private Rectangle rOk;
+	int w = 0;
+	int h = 0;
+	private int button_width = 80;
+	private int button_height = 30;
+	
+	
+	JPanel window = new JPanel();
+	
+	public Gameover() {
+		setTitle("End");
+		setSize(new Dimension(width, height));
+		add(window);
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setResizable(false);
+		window.setLayout(null);
+		drawButtons();
+		repaint();
+	}
+	
+	public void drawButtons() {
+		
+		Ok = new JButton("OK");
+		rOk = new Rectangle((width - 100), (height - 70), button_width, button_height );
+		Ok.setBounds(rOk);
+		window.add(Ok);
+		
+//		lwidth = new JLabel("Width:");
+//		lwidth.setBounds(25, 150, 120, 20);
+//		lwidth.setFont(new Font("Verdana", 0, 14 ));
+//		window.add(lwidth);
+//		
+//		twidth = new JTextField();
+//		twidth.setBounds(80, 150, 60, 20);
+//			window.add(twidth);
+//			
+//		actwidth = new JLabel("Actual width: " + config.getWidth());
+//		actwidth.setBounds(170, 150, 150, 20);
+//		actwidth.setFont(new Font("Verdana", 0, 14 ));
+//		window.add(actwidth );
+//		
+//		lheight = new JLabel("Height:");
+//		lheight.setBounds(25, 180, 120, 20);
+//		lheight.setFont(new Font("Verdana", 0, 14 ));
+//		window.add(lheight);
+//		
+//		theight = new JTextField();
+//		theight.setBounds(80, 180, 60, 20);
+//		window.add(theight);
+//		
+//		actheight = new JLabel("Actual height: " + config.getHeight());
+//		actheight.setBounds(170, 180, 150, 20);
+//		actheight.setFont(new Font("Verdana", 0, 14 ));
+//		window.add(actheight );
+		
+		Ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			
+				config.saveConfiguration("width", parseWidth());
+				config.saveConfiguration("height", parseHeight());
+				
+				
+				
+			}
+		});
+	}
+	
+	private void drop() {
+		int selection = resolution.getSelectedIndex();
+		
+		if (selection == 0) {
+			w = 640;
+			h = 480;
+		}
+		if (selection == 1 || selection == -1) {
+			w = 800;
+			h = 600;
+		}
+		if (selection == 2 ) {
+			w = 1024;
+			h = 768;
+		}
+		config.saveConfiguration("width", w);
+		config.saveConfiguration("height", h);
+	}
+	
+	private int parseWidth() {
+		try {
+		int w = Integer.parseInt(twidth.getText());
+		return w;
+		} catch (NumberFormatException e) {
+			drop();
+			return w;
+		}
+	}
+	
+	private int parseHeight() {
+		try {
+		int h = Integer.parseInt(theight.getText());
+		return h;
+		} catch (NumberFormatException e) {
+			drop();
+			return h;
+		}
+		
+	}
+}

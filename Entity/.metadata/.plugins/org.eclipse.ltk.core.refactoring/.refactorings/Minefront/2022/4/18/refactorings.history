@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;yDepth&apos; in &apos;com.mime.minefront.graphics.Render3D.floor()&apos; to &apos;ceiling&apos;&#x0D;&#x0A;- Original project: &apos;Minefront&apos;&#x0D;&#x0A;- Original element: &apos;com.mime.minefront.graphics.Render3D.floor().yDepth&apos;&#x0D;&#x0A;- Renamed element: &apos;yDepth&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;yDepth&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.mime.minefront.graphics{Render3D.java[Render3D~floor@yDepth!227!259!234!239!D!0!false" name="ceiling" references="true" stamp="1651329099975" version="1.0"/>
+</session>

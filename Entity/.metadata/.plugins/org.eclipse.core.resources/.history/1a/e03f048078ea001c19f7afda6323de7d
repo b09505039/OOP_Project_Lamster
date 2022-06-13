@@ -1,0 +1,16 @@
+package level;
+
+public class StartLevel extends Level {
+	public StartLevel() {
+		super(20,20);
+		//name = "The Prison";
+	}
+
+	protected void decorateBlock(int x, int y, Block block, int col) {
+		super.decorateBlock(x, y, block, col);
+	}
+
+	protected Block getBlock(int x, int y, int col) {
+		return super.getBlock(x, y, col);
+	}
+}

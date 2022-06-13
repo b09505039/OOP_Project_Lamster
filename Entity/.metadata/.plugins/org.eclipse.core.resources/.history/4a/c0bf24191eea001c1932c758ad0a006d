@@ -1,0 +1,15 @@
+package level;
+
+import entity.Entity;
+import input.Player;
+
+public class WinBlock extends Block {
+	public void addEntity(Entity entity) {
+		super.addEntity(entity);
+		System.out.println("hereh");
+		if (entity instanceof Player) {
+			((Player)entity).win();
+		}
+	}
+
+}
