@@ -3,7 +3,8 @@
 # 物件導向程式設計 期末專題 自選題：Lamster
 這是一款第一人稱迷宮探險遊戲
 
-版本：1. Eclipse IDE Version: 2021-12 (4.22.0)
+版本：</br>
+1. Eclipse IDE Version: 2021-12 (4.22.0)
 2. jdk Version: 17.0.3.1
 
 
